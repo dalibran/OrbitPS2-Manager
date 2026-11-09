@@ -293,7 +293,7 @@ export class DetailsComponent {
    */
   private findBase64Art(art: gameArt[], type: string): string | null {
     const found = art.find((a) => a.type?.toUpperCase() === type.toUpperCase());
-    return found ? `data:image/png;base64,${found.base64}` : null;
+    return found ? found.url || `data:image/png;base64,${found.base64}` : null;
   }
 
   /**

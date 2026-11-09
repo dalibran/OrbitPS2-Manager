@@ -38,6 +38,9 @@
         tabindex="-1"
         class="dropdown-content menu glass-strong rounded-box z-10 w-48 p-2 shadow-xl"
       >
+        @if (canChooseWebCover) {
+          <li><a (click)="chooseWebCover()"><i-lucide name="scan-search" [size]="16"></i-lucide>Choose cover…</a></li>
+        }
         @if (!isApp() || isPs1LauncherApp()) {
           <li>
             <a (click)="fetchArtwork()"
@@ -138,6 +141,9 @@
           tabindex="-1"
           class="dropdown-content menu glass-strong rounded-box z-10 w-48 p-2 shadow-xl"
         >
+          @if (canChooseWebCover) {
+            <li><a (click)="chooseWebCover()"><i-lucide name="scan-search" [size]="16"></i-lucide>Choose cover…</a></li>
+          }
           @if (!isApp() || isPs1LauncherApp()) {
             <li>
               <a (click)="fetchArtwork()"

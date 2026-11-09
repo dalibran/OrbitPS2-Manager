@@ -1,0 +1,24 @@
+{
+  "name": "orbitps2-web",
+  "version": "0.1.0",
+  "private": true,
+  "license": "GPL-3.0-only",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "npm run build:server && npm run build:ui",
+    "build:server": "node build.cjs",
+    "build:ui": "node build-ui.cjs",
+    "start": "node server.cjs",
+    "pretest": "npm run build:server",
+    "test": "node --test test/*.test.cjs"
+  },
+  "dependencies": {
+    "adm-zip": "0.6.1",
+    "lz4js": "^0.2.0"
+  },
+  "devDependencies": {
+    "sucrase": "3.35.1"
+  }
+}
