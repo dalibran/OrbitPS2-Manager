@@ -75,4 +75,6 @@ export type gameArt = {
   path: string;
   type: string;
   base64: string;
+  /** Web adapter: stream artwork instead of loading the entire ART folder into RAM. */
+  url?: string;
 };

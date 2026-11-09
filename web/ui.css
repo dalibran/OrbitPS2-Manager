@@ -1,0 +1,90 @@
+/* Browser-only adjustments; upstream component styles remain unchanged. */
+html[data-orbit-web] app-gamecard .tile.poster {
+  border-radius: 6px;
+}
+
+html[data-orbit-web] app-gamecard .poster-art > .poster-system:not(.is-ps1):not(.is-ps1-app) {
+  display: none;
+}
+
+html[data-orbit-web] app-library .library-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 230px));
+  align-items: start;
+}
+
+html[data-orbit-web] app-gamecard .poster-art,
+html[data-orbit-web] app-gamecard .poster-art.is-square {
+  aspect-ratio: auto;
+}
+
+html[data-orbit-web] app-gamecard .poster-art-clip {
+  position: relative;
+  inset: auto;
+  aspect-ratio: 7 / 10;
+  background: var(--color-base-300);
+}
+
+html[data-orbit-web] app-gamecard .poster-art.is-square .poster-art-clip,
+html[data-orbit-web] app-gamecard .poster-art:has(> .poster-system.is-ps1) .poster-art-clip {
+  aspect-ratio: 1;
+}
+
+html[data-orbit-web] app-gamecard .poster-art-clip img,
+html[data-orbit-web] app-gamecard .tile:hover .poster-art-clip img {
+  object-fit: contain;
+  transform: none;
+}
+
+html[data-orbit-web] app-gamecard .poster-overlay {
+  position: relative;
+  inset: auto;
+  padding: 0.7rem;
+  background: oklch(18% 0.04 262);
+}
+
+html[data-orbit-web] app-gamecard .row-art img {
+  object-fit: contain;
+}
+
+@media (max-width: 720px) {
+  html[data-orbit-web] app-library .library-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 180px));
+    gap: 0.9rem;
+  }
+}
+
+.orbit-cover-dialog {
+  position: fixed;
+  margin: auto;
+  width: min(1000px, 94vw);
+  max-height: 90vh;
+  overflow: auto;
+  padding: 1.5rem;
+  border: 1px solid var(--color-base-300);
+  border-radius: 1rem;
+  color: var(--color-base-content);
+  background: var(--color-base-100);
+  box-shadow: 0 25px 50px #0008;
+}
+.orbit-cover-dialog::backdrop { background: #0009; }
+.orbit-cover-dialog h2 { font-size: 1.5rem; font-weight: 600; }
+.orbit-cover-muted { opacity: 0.7; font-size: 0.85rem; }
+.orbit-cover-search { display: flex; gap: 0.6rem; margin: 1rem 0; flex-wrap: wrap; }
+.orbit-cover-search input, .orbit-cover-search select {
+  border: 1px solid var(--color-base-300);
+  background: var(--color-base-200);
+  color: inherit;
+  border-radius: 0.5rem;
+  padding: 0.65rem;
+}
+.orbit-cover-search input { flex: 1; min-width: 150px; }
+.orbit-cover-upload { display: grid; gap: 0.5rem; margin: 1rem 0; }
+.orbit-cover-status { margin: 1rem 0; overflow-wrap: anywhere; }
+.orbit-cover-results { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr)); gap: 1.2rem; }
+.orbit-cover-result { display: flex; flex-direction: column; gap: 0.35rem; padding: 0.75rem; background: var(--color-base-200); border-radius: 0.75rem; }
+.orbit-cover-result img { display: block; width: 100%; height: 240px; object-fit: contain; background: var(--color-base-300); }
+.orbit-cover-result h3 { font-weight: 600; }
+.orbit-cover-result .btn { margin-top: auto; }
+.orbit-cover-local img { display: block; max-width: 230px; max-height: 300px; object-fit: contain; margin-bottom: 0.5rem; }
+.orbit-cover-local:empty { display: none; }
+.orbit-cover-footer { display: flex; justify-content: space-between; gap: 0.75rem; padding-top: 1.5rem; }

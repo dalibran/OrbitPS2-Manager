@@ -245,7 +245,7 @@
               @if (screenshots[0]; as scr) {
                 <div class="screenshot-item">
                   <img
-                    [src]="'data:image/png;base64,' + scr.base64"
+                    [src]="scr.url || 'data:image/png;base64,' + scr.base64"
                     alt="Screenshot"
                     loading="lazy"
                   />
@@ -258,7 +258,7 @@
               @if (screenshots[1]; as scr) {
                 <div class="screenshot-item">
                   <img
-                    [src]="'data:image/png;base64,' + scr.base64"
+                    [src]="scr.url || 'data:image/png;base64,' + scr.base64"
                     alt="Screenshot"
                     loading="lazy"
                   />

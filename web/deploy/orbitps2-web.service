@@ -1,0 +1,26 @@
+[Unit]
+Description=OrbitPS2 local web manager
+After=network.target
+RequiresMountsFor=/srv/ps2 /srv/ps2-inbox
+
+[Service]
+Type=simple
+User=orbitps2
+Group=orbitps2
+WorkingDirectory=/opt/orbitps2-manager
+EnvironmentFile=/etc/orbitps2-web.env
+ExecStart=/usr/bin/node /opt/orbitps2-manager/web/server.cjs
+Restart=on-failure
+RestartSec=5
+StateDirectory=orbitps2-web
+UMask=0007
+Nice=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/ps2 /srv/ps2-inbox
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

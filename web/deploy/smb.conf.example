@@ -1,0 +1,18 @@
+# Example for a dedicated PS2 Pi. Merge deliberately with an existing Samba
+# configuration; the global protocol setting applies to every share.
+[global]
+    server role = standalone server
+    server min protocol = NT1
+    interfaces = lo eth0
+    bind interfaces only = yes
+    smb ports = 445
+    map to guest = Never
+
+[PS2SMB]
+    path = /srv/ps2
+    browseable = yes
+    read only = no
+    guest ok = no
+    valid users = orbitps2
+    create mask = 0660
+    directory mask = 0770

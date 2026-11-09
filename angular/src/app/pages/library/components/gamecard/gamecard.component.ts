@@ -8,6 +8,7 @@ import {
   output,
 } from '@angular/core';
 import { Game } from '@shared/types/game.type';
+import { ps1ArtworkIdentities } from '@shared/utils/ps1-artwork-identities';
 
 import { LibraryService } from '@shared/services/library.service';
 import { JobsService } from '@shared/services/jobs.service';
@@ -68,7 +69,7 @@ export class GamecardComponent {
   /** Base64 data-URL of the selected artwork, or null if none found. */
   readonly artSrc = computed(() => {
     const a = this.displayArt();
-    return a ? `data:image/png;base64,${a.base64}` : null;
+    return a ? a.url || `data:image/png;base64,${a.base64}` : null;
   });
 
   // ── Labels & badges ──────────────────────────────────────────────────
@@ -176,6 +177,21 @@ export class GamecardComponent {
 
   /** Whether the artwork wizard dialog is open. */
   public showArtworkWizard = false;
+  readonly canChooseWebCover = typeof window.orbitWeb?.chooseCover === 'function';
+
+  async chooseWebCover() {
+    const game = this.game();
+    if (!game || !window.orbitWeb) return;
+    const identity = game.isPs1Launcher && game.ps1LauncherBoot
+      ? game.ps1LauncherBoot
+      : game.system === 'PS1' ? ps1ArtworkIdentities(game)[0]
+      : game.system === 'APPS' ? game.filename : game.gameId;
+    if (!identity) return;
+    if (await window.orbitWeb.chooseCover({ identity, title: game.title || game.gameId,
+      system: game.system === 'PS1' || game.isPs1Launcher ? 'PS1' : 'PS2' })) {
+      this._libraryService.refreshGamesFiles();
+    }
+  }
 
   /** Whether the user opted to delete artwork alongside the game. */
   public deleteArtwork = false;

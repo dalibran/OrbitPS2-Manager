@@ -36,7 +36,7 @@ export class TitleBarComponent implements OnInit {
     ]).then(([platform, { canMinimize, canMaximize }, maximized]) => {
       // macOS keeps its native frame/traffic lights; only draw our own
       // title bar where the main process created a frameless window.
-      this.visible = platform !== 'darwin';
+      this.visible = platform !== 'darwin' && platform !== 'web';
       this.canMinimize = canMinimize;
       this.canMaximize = canMaximize;
       this.maximized = maximized;
